@@ -98,14 +98,13 @@ var SAOMainPanel = {
 		panel.getPosY = function() { return posY;};
 		panel.getWidth = function() { return $('#' + id).css('width'); };
 
-		panel.moveTo = function(targetItem,menuPos) {
+		panel.moveTo = function(targetItem) {
 			console.log('Panel Moving to ' + targetItem.getID());
 		};
 
-		panel.fadeIn = function(targetItem,menuPos) {
+		panel.fadeIn = function(targetItem) {
 			// $(id).fadeIn();
-			$(id).velocity('fadeIn');
-			console.log('Panel Fading In '+ targetItem.getID() + ':' + targetItem.getPosY() + ' !');
+			console.log('Panel Fading In '+ targetItem.getID() +' !');
 		};
 
 		panel.fadeOut = function() {
@@ -133,7 +132,8 @@ var SAOMainMenu = {
 		var mStartPosX = 0;
 		var mStartPosY = 0;
 
-		menu.getPos = function() { return {x : _startPosX, y: _startPosY}; };
+		menu.getStartPosX = function() { return _startPosX;};
+		menu.getStartPosY = function() { return _startPosY;};
 		menu.getMenuName = function() { return _menu_name;};
 		menu.getMaskName = function() { return _mask_name;};
 		menu.getOverlayName = function() { return _overlay_name;};
@@ -182,9 +182,9 @@ var SAOMainMenu = {
 					var panel_dom = $(panel.getID());
 					if (panel_dom.css('display') === undefined ||
 					  panel_dom.css('display') === 'none') {
-						panel.fadeIn(items[indexItem[item_id]], this.getPos());
+						panel.fadeIn(items[indexItem[item_id]]);
 					} else {
-						panel.moveTo(items[indexItem[item_id]], this.getPos());
+						panel.moveTo(items[indexItem[item_id]]);
 					}
 				} else {
 					selected = -1;
@@ -230,32 +230,21 @@ var SAOMainMenu = {
 		menu.fadeIn = function() {
 			var menu_dom = $(_menu_name);
 			menu_dom.css('left',mStartPosX);
-			menu_dom.css('top',mStartPosY - 100);
+			menu_dom.css('top',mStartPosY - 300);
 			menu_items = $('.menu_btn');
 			menu_items.css('top',0);
 			menu_items.css('left',0);
 
 			var overlay_dom = $(_overlay_name);
-			// overlay_dom.fadeIn('fast');
+			overlay_dom.fadeIn('fast');
 
 			var len = items.length;
-			overlay_dom.velocity('fadeIn', {duration: 200, begin : function() {
-				for (var i=0; i<items.length;i++) {
-					var wid = items[i].getWID();
-					var endY = (i+1) * 65 + 100;
-					// move('#' + wid).delay(0.05*(len-i-1) +'s').duration('0.4s').y(endY).end();
-					// $('#' + wid).velocity({opacity : 0});
-					$('#' + wid).velocity({
-						opacity: 1,
-						top : endY
-					},{
-						delay : 100 * (len-i-1),
-						duration: 400,
-						display: 'block'
-					});
-					items[i].setPosY(endY);
-				}	
-			}});
+			for (var i=0; i<items.length;i++) {
+				var wid = items[i].getWID();
+				var endY = (i+1) * 65 + 300;
+				move('#' + wid).delay(0.05*(len-i-1) +'s').duration('0.4s').y(endY).end();
+				items[i].setPosY(endY);
+			}	
 			$(_mask_name).bind('click',menu.toggle);
 			sao_sound_effects_play('fadeIn');
 		};
@@ -263,17 +252,10 @@ var SAOMainMenu = {
 
 		menu.fadeOut = function() {
 			var overlay_dom = $(_overlay_name);
-			overlay_dom.velocity('fadeOut', {duration : 400});
+			overlay_dom.fadeOut('fast');
 			for (var i=0; i<items.length; i++) {
 				var wid = items[i].getWID();
-				$('#' + wid).velocity({
-					top : 0,
-					opacity : 0
-				},{
-					delay : 50 * i,
-					duration : 400
-				});
-				// move('#'+ wid).delay(0.05*i+'s').duration('0.4s').y(0).end();
+				move('#'+ wid).delay(0.05*i+'s').duration('0.4s').y(0).end();
 			}
 			sao_sound_effects_play('fadeOut');
 			if (selected >= 0) { items[selected].cancelSelected(); selected = -1;}

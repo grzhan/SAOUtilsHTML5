@@ -42,13 +42,14 @@
 }
 
 .icon_box {
-    background-image: url('resources/images/btn_normal.png');
+    opacity: 0;
+    background-image: url('../resources/images/btn_normal.png');
     width: 64px;
     height: 64px;
 }
 
 /*		.icon_box:hover {
-    background-image: url('resources/images/btn_press.png');
+    background-image: url('../resources/images/btn_press.png');
 }
 */
 .icon_inner {
@@ -57,32 +58,32 @@
 }
 
 /*		.icon_info:hover {
-    background: url('resources/images/info_hover.png') no-repeat;
+    background: url('../resources/images/info_hover.png') no-repeat;
     background-position: 8px 8px;
 }
 */
 .icon_info {
-    background: url('resources/images/info_normal.png') no-repeat;
+    background: url('../resources/images/info_normal.png') no-repeat;
     background-position: 8px 8px;
 }
 
 .icon_setting {
-    background: url('resources/images/setting_normal.png') no-repeat;
+    background: url('../resources/images/setting_normal.png') no-repeat;
     background-position: 8px 8px;
 }
 
 /*		.icon_setting:hover {
-    background: url('resources/images/setting_hover.png') no-repeat;
+    background: url('../resources/images/setting_hover.png') no-repeat;
     background-position: 8px 8px;
 }
 */
 .icon_plugin {
-    background: url('resources/images/plugin_normal.png') no-repeat;
+    background: url('../resources/images/plugin_normal.png') no-repeat;
     background-position: 8px 8px;
 }
 
 /*		.icon_plugin:hover {
-    background: url('resources/images/plugin_hover.png') no-repeat;
+    background: url('../resources/images/plugin_hover.png') no-repeat;
     background-position: 8px 8px;
 }
 */	
@@ -93,7 +94,7 @@ div#sao_menu_panel {
     height: 415px;
     -webkit-box-shadow : 0 0 10px #aaa;
     -moz-box-shadow : 0 0 10px #aaa;
-    background-image: url('resources/images/panel_main_bg.png');
+    background-image: url('../resources/images/panel_main_bg.png');
     background-repeat: repeat-x;
     position: absolute;
 }
@@ -124,14 +125,14 @@ div#panel_desc {
 
 div#panel_bottom_arrowhead {
     height: 12px;
-    background-image: url('resources/images/panel_down_arrowhead.png');
+    background-image: url('../resources/images/panel_down_arrowhead.png');
     background-repeat: no-repeat;
 }
 
 div#panel_right_arrowhead {
     width: 22px;
     height: 35px;
-    background-image: url('resources/images/panel_right_arrowhead.png');
+    background-image: url('../resources/images/panel_right_arrowhead.png');
     background-repeat: no-repeat;
     position: relative;
     top: 150px;
