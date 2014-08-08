@@ -106,6 +106,11 @@ var SAOMainPanel = {
 			// $(id).fadeIn();
 			var pwidth = panel.getWidth();
 			console.log('Panel Width: ' + pwidth);
+			var dheight = $('#' + did).css('height');
+			var baheight  = $('#' + baid).css('height');
+			$('#'+ did).css({'height':0});
+			$('#'+ baid).css('height' ,0);
+
 			$('#' + id).css({
 				'top':pStartPosY + targetItem.getPosY(),
 				'left':pStartPosX + parseInt(pwidth) , 
@@ -118,6 +123,10 @@ var SAOMainPanel = {
 				display:'block',
 				begin : function() {
 					$('#' + raid).css('left',0).velocity({ left : pwidth });
+				},
+				complete : function() {
+					$('#' + baid).velocity({height: baheight}, {duration : 100});
+					$('#' + did).css({height:0}).velocity({height: dheight});
 				}
 			});
 			console.log('Panel Fading In '+ targetItem.getID() + ':' + targetItem.getPosY() + ' !');
@@ -164,6 +173,11 @@ var SAOMainMenu = {
 		menu.updateStartPos = function() {
 			mStartPosX = dStartPosX - (iconWidth / 2);
 			mStartPosY = dStartPosY - iconWidth;
+			// TODO : refact
+			mStartPosY = (mStartPosY < 120) ? 120 : mStartPosY;
+			mStartPosY = (mStartPosY > 220) ? 220 : mStartPosY;
+			mStartPosX = (mStartPosX < 260) ? 260 : mStartPosX;
+			//  mStartPosX ...
 		};
 		
 		menu.createMenu = function() {

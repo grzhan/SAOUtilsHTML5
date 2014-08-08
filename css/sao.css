@@ -91,7 +91,7 @@
 div#sao_menu_panel {
     /* background-color: #aaa; */
     width: 236px;
-    height: 415px;
+    /*height: 415px;*/
     -webkit-box-shadow : 0 0 10px #aaa;
     -moz-box-shadow : 0 0 10px #aaa;
     background-image: url('../resources/images/panel_main_bg.png');
