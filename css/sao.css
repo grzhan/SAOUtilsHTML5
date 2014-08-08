@@ -97,6 +97,7 @@ div#sao_menu_panel {
     background-image: url('../resources/images/panel_main_bg.png');
     background-repeat: repeat-x;
     position: absolute;
+    cursor : normal;
 }
 
 div#panel_title {
@@ -113,7 +114,7 @@ div#panel_hori {
 /* gradient : #ebebeb --> #fdfdfd */
 div#panel_main {
     /* background-color: #aaa; */
-    height: 227px;
+    height: 226px;
 }
 div#panel_desc {
     background-color: #ddd;

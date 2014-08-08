@@ -72,9 +72,9 @@ var SAOMainPanel = {
 		var did = 'panel_desc';
 		var baid = 'panel_bottom_arrowhead';
 		var raid = 'panel_right_arrowhead';
-		var posX = 0;
-		var posY = 0;
 
+		var pStartPosX = -252;
+		var pStartPosY = -177;
 
 		panel.getDOM = function () {
 			var dom = $('<div id="'+ id + '">\
@@ -97,19 +97,42 @@ var SAOMainPanel = {
 		panel.getPosX = function() { return posX;};
 		panel.getPosY = function() { return posY;};
 		panel.getWidth = function() { return $('#' + id).css('width'); };
-
 		panel.moveTo = function(targetItem,menuPos) {
 			console.log('Panel Moving to ' + targetItem.getID());
+			$('#' + id).velocity({'top' : pStartPosY + targetItem.getPosY()}, {duration : 200});
 		};
 
 		panel.fadeIn = function(targetItem,menuPos) {
 			// $(id).fadeIn();
-			$(id).velocity('fadeIn');
+			var pwidth = panel.getWidth();
+			console.log('Panel Width: ' + pwidth);
+			$('#' + id).css({
+				'top':pStartPosY + targetItem.getPosY(),
+				'left':pStartPosX + parseInt(pwidth) , 
+				'width' : 0
+			}).velocity({
+				opacity : 1, 
+				width : pwidth,
+				left: pStartPosX
+			},{
+				display:'block',
+				begin : function() {
+					$('#' + raid).css('left',0).velocity({ left : pwidth });
+				}
+			});
 			console.log('Panel Fading In '+ targetItem.getID() + ':' + targetItem.getPosY() + ' !');
+			console.log('Start Pos : {x:' + menuPos.x + ',y:' + menuPos.y + '}');
 		};
 
 		panel.fadeOut = function() {
 			// $(id).fadeIn();
+			$('#' + id).velocity({
+				top : '-=50',
+				opacity : 0
+			}, {
+				display : 'none',
+				duration: 300
+			});
 			console.log('Panel Fading Out !');
 		};
 		return panel;
@@ -133,7 +156,7 @@ var SAOMainMenu = {
 		var mStartPosX = 0;
 		var mStartPosY = 0;
 
-		menu.getPos = function() { return {x : _startPosX, y: _startPosY}; };
+		menu.getPos = function() { this.updateStartPos(); return {x : mStartPosX, y: mStartPosY}; };
 		menu.getMenuName = function() { return _menu_name;};
 		menu.getMaskName = function() { return _mask_name;};
 		menu.getOverlayName = function() { return _overlay_name;};
@@ -180,11 +203,12 @@ var SAOMainMenu = {
 				if (selected !== indexItem[item_id]) {
 					menu.selectItem(indexItem[item_id]);
 					var panel_dom = $(panel.getID());
+					var menuPos = menu.getPos();
 					if (panel_dom.css('display') === undefined ||
 					  panel_dom.css('display') === 'none') {
-						panel.fadeIn(items[indexItem[item_id]], this.getPos());
+						panel.fadeIn(items[indexItem[item_id]], menuPos);
 					} else {
-						panel.moveTo(items[indexItem[item_id]], this.getPos());
+						panel.moveTo(items[indexItem[item_id]], menuPos);
 					}
 				} else {
 					selected = -1;
@@ -271,10 +295,11 @@ var SAOMainMenu = {
 					opacity : 0
 				},{
 					delay : 50 * i,
-					duration : 400
+					duration : 200
 				});
 				// move('#'+ wid).delay(0.05*i+'s').duration('0.4s').y(0).end();
 			}
+			panel.fadeOut();
 			sao_sound_effects_play('fadeOut');
 			if (selected >= 0) { items[selected].cancelSelected(); selected = -1;}
 			$(_mask_name).unbind('click');
