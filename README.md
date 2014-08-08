@@ -3,7 +3,7 @@ SAOUtilsHTML5
 
 ## 简介
 
-SAOUtilsHTML5 是刀剑神域（Sowrd Art Online）UI菜单的HTML5实现，主要参考了Joshua的SAO Utils for Windows版本，已经原作者许可，您可以认为这是SAO Utils原版本的移植或者说表达上的延伸。
+SAOUtilsHTML5 是刀剑神域（Sowrd Art Online）UI菜单的HTML5实现，主要参考了Joshua[SAO Utils for Windows版本](http://www.gpbeta.com/post/develop/sao-utils/)，已经原作者许可，您可以认为这是SAO Utils原版本的移植或者说表达上的延伸。
 
 SAOUtilsHTML5 是一个可以在任何页面通过滑动手势来触发的UI菜单，里面会添加一些方便用户浏览页面的功能，达到优化浏览体验的目的。
 
@@ -43,7 +43,10 @@ Have a nice day!
 
 ### Demo 演示
 
+![SAO Utils HTML5 Demo](http://image-hosting.qiniudn.com/githubsaoutils.gif)
+
 *gif动图，请耐心等待浏览器加载*
+
 
 ## 项目计划
 
