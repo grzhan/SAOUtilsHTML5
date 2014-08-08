@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'GothamNights';
+    src : url('../resources/fonts/GothamNights.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .wrapper {
     width: 500px;
     height: 500px;
@@ -98,11 +105,15 @@ div#sao_menu_panel {
     background-repeat: repeat-x;
     position: absolute;
     cursor : normal;
+    font-family: GothamNights;
+    color: #969696;
 }
 
 div#panel_title {
     /* background-color: red; */
-    height: 42px;
+    /*height: 42px;*/
+    padding-top: 20px;
+    font-size: 17px;
 }
 div#panel_hori {
     height: 1px;
@@ -139,3 +150,4 @@ div#panel_right_arrowhead {
     top: 150px;
     left: 236px;
 }	
+

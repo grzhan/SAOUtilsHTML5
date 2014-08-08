@@ -39,7 +39,7 @@
 	</div>
 	<script scr="js/sao/sao.init.js"></script>
 	<script src="js/sao/sao.gesture.js"></script>
-	<script src="js/sao/sao.main.js"></script>
+	<script src="js/sao/sao.animate.modal.js"></script>
 
 </body>
 </html>
